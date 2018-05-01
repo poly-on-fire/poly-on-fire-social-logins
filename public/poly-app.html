@@ -10,9 +10,6 @@
         display: block;
       }
     </style>
-    <template is="dom-if" if="![[user]]">
-      <h2>Hello from [[prop1]]!</h2>
-    </template>
     <template is="dom-if" if="[[user]]">
       <h2>Hello [[user.displayName]]!</h2>
     </template>
@@ -28,21 +25,12 @@
     </firebase-auth>
     <firebase-auth id="twitterAuth" user="{{user}}" provider="twitter" on-error="handleError">
     </firebase-auth>
-        <paper-button raised on-tap="googlelogin" hidden$="[[user]]">Log in with Google Sign-On</paper-button>
-      <br>  <paper-button raised on-tap="fblogin" hidden$="[[user]]">Log in with Facebook Sign-On</paper-button>
-      <br>  <paper-button raised on-tap="twitterlogin" hidden$="[[user]]">Log in with Twitter Sign-On</paper-button>
-      <br>  <paper-button raised on-tap="logout" hidden$="[[!user]]">Sign Out</paper-button>
-
-  <div class="error" hidden$="[[!error]]">[[error.code]]: [[error.message]]</div>
-  <div hidden$="[[user]]">
-    <h3>Email/Password</h3>
-    <form on-submit="signInWithEmailAndPassword">
-      <input value="{{email::input}}" type="email" placeholder="Email">
-      <input value="{{password::input}}" type="password" placeholder="Password">
-      <button type="submit" on-tap="signInWithEmailAndPassword">Sign In</button>
-      <button type="button" on-tap="createUserWithEmailAndPassword">Sign Up</button>
-    </form>
-  </div>
+    <paper-button raised on-tap="googlelogin" hidden$="[[user]]">Log in with Google Sign-On</paper-button>
+    <br>  <paper-button raised on-tap="fblogin" hidden$="[[user]]">Log in with Facebook Sign-On</paper-button>
+    <br>  <paper-button raised on-tap="twitterlogin" hidden$="[[user]]">Log in with Twitter Sign-On</paper-button>
+    <br>  <paper-button raised on-tap="logout" hidden$="[[!user]]">Sign Out</paper-button>
+    <div class="error" hidden$="[[!error]]">[[error.code]]: [[error.message]]</div>
+  <hr>
   <div hidden$="[[!user]]">
     <table>
       <tr><th>uid</th> <td>[[user.uid]]</td></tr>
@@ -50,6 +38,16 @@
       <tr><th>email</th> <td>[[user.email]]</td></tr>
       <tr><th>emailVerified</th> <td>[[user.emailVerified]]</td></tr>
     </table>
+  </div>
+  <div hidden$="[[user]]">
+    <p> Email/Password is broken, taken from polymerfire/demo and no attempt was made to fix because it wasn't needed. Provided to invite a pull request in case someone less lazy than myself can't help themself.</p>
+    <h3>Email/Password</h3>
+    <form on-submit="signInWithEmailAndPassword">
+      <input value="{{email::input}}" type="email" placeholder="Email">
+      <input value="{{password::input}}" type="password" placeholder="Password">
+      <button type="submit" on-tap="signInWithEmailAndPassword">Sign In</button>
+      <button type="button" on-tap="createUserWithEmailAndPassword">Sign Up</button>
+    </form>
   </div>
 </template>
 
